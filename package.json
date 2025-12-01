@@ -1,0 +1,30 @@
+{
+  "name": "osaka-test-suite",
+  "version": "1.0.0",
+  "description": "Test suite for Etherlink 6.0 Osaka execution-layer upgrade",
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "test:config": "node --import tsx scripts/ts/check-eth-config.ts",
+    "test:tx-gas-cap": "node --import tsx scripts/ts/tx-gas-cap.ts",
+    "test:rlp-blocksize": "node --import tsx scripts/ts/rlp-blocksize-probe.ts",
+    "test:instant-confirmations": "node --import tsx scripts/ts/instant-confirmations.ts",
+    "test:onchain": "node --import tsx scripts/ts/test-osaka-onchain.ts",
+    "test:e2e": "npm run test:config && npm run test:tx-gas-cap && npm run test:rlp-blocksize && npm run test:instant-confirmations -- --mode=latest"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "ethers": "^6.13.0",
+    "ws": "^8.18.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/ws": "^8.5.10",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
+    "typescript": "^5.5.0"
+  }
+}

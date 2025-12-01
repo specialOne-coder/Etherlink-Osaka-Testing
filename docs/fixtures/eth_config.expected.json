@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "Expected structure for eth_config RPC response on Etherlink 6.0 with Osaka upgrade",
+  "type": "object",
+  "properties": {
+    "chainId": {
+      "type": "string",
+      "description": "Chain ID as hex string"
+    },
+    "networkId": {
+      "type": "string",
+      "description": "Network ID as hex string"
+    },
+    "fork": {
+      "type": "string",
+      "description": "Current fork name (should include 'osaka' after activation)"
+    },
+    "forkVersion": {
+      "type": "string",
+      "description": "Fork version identifier"
+    },
+    "osaka": {
+      "type": "object",
+      "description": "Osaka fork configuration",
+      "properties": {
+        "activationBlock": {
+          "type": ["string", "null"],
+          "description": "Block number where Osaka activates (hex string or null if not yet activated)"
+        },
+        "activationTimestamp": {
+          "type": ["string", "null"],
+          "description": "Timestamp where Osaka activates (hex string or null if not yet activated)"
+        }
+      }
+    },
+    "gas": {
+      "type": "object",
+      "description": "Gas-related configuration",
+      "properties": {
+        "maxTransactionGas": {
+          "type": "string",
+          "description": "Maximum gas per transaction (EIP-7825, typically 0x1000000 = 2^24)"
+        },
+        "maxBlockGas": {
+          "type": "string",
+          "description": "Maximum gas per block"
+        }
+      }
+    },
+    "block": {
+      "type": "object",
+      "description": "Block-related configuration",
+      "properties": {
+        "maxRlpSize": {
+          "type": "string",
+          "description": "Maximum RLP-encoded block size in bytes (EIP-7934, typically 0xa00000 = 10 MiB)"
+        }
+      }
+    },
+    "precompiles": {
+      "type": "object",
+      "description": "Precompile addresses and availability",
+      "properties": {
+        "secp256r1": {
+          "type": "string",
+          "description": "secp256r1 precompile address (EIP-7951, should be 0x100)"
+        }
+      }
+    }
+  },
+  "required": ["chainId", "fork"]
+}
+
+
+
+
